@@ -1,25 +1,19 @@
-<h1>Add Blog</h1>
-<!-- loop through the errors and display validation method -->
-{{#each errors}}
-<h1>{{text}}</h1>
-{{else}}
-
-{{/each}}
-
+<h1>Edit</h1>
 
 <div class="card">
   <div class="card-content">
     <div class="row">
-        <form class="col s12" action="/blogs" method="post" >
+        <form class="col s12" action="/blogs/{{blog._id}}?_method=PUT" method="post" >
+           <input type="hidden" name="_method" value="PUT">
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Title" id="first_name" type="text" class="validate" value="{{title}}" name="title">
+              <input placeholder="Title" id="first_name" type="text" class="validate" value="{{blog.title}}" name="title">
               <label for="title">Title</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="Description" id="first_name" type="text" class="validate" value="{{description}}" name="description">
+              <input placeholder="Description" id="first_name" type="text" class="validate" value="{{blog.description}}" name="description">
               <label for="description">Description</label>
             </div>
           </div>

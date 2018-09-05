@@ -1,0 +1,17 @@
+{{#each blogs}}
+<div class="card">
+   <div class="card-content">
+     <h4>{{title}}</h4>
+     <p>{{description}}</p>
+     <p>
+       <a href="/blogs/{{id}}/edit">Edit</a>
+     </p>
+     <form class="" action="/blogs/{{id}}?_method=DELETE" method="post">
+       <input type="hidden" name="_method" value="DELETE">
+       <button type="submit" name="button">Delete</button>
+     </form>
+   </div>
+  </div>
+{{else}}
+<h1>No blogs hosted</h1>
+{{/each}}
