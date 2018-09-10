@@ -1,4 +1,4 @@
-<h1>Add Blog</h1>
+<h1>Login</h1>
 <!-- loop through the errors and display the validation message -->
 {{#each errors}}
   <h4>{{text}}</h4>
@@ -12,14 +12,14 @@
         <form class="col s12" action="/blogs" method="post" >
           <div class="row">
             <div class="input-field col s12">
-              <input placeholder="Title" id="first_name" type="text" class="validate" name="title" value="{{title}}" >
-              <label for="title">Title</label>
+              <input placeholder="Email" id="email" type="text" class="validate" name="email">
+              <label for="email">Email</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="Description" id="first_name" type="text" class="validate" name="description" value="{{description}}">
-              <label for="description">Description</label>
+              <input placeholder="Password" id="Password" type="password" class="validate" name="password" >
+              <label for="password">Password</label>
             </div>
           </div>
           <div class="row">
