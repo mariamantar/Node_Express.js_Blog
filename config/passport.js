@@ -3,37 +3,36 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// load user models
+// load user model
 const User = mongoose.model('users');
 
-  // export the passport authentication function implemented with local Strategy
-  module.exports = (passport) => {
-    passport.use(new LocalStrategy({usernameField: 'email'}, (email,
-    password, done) => {
+// export the passport authentication function implemented with local strategy
+
+module.exports = (passport) => {
+  passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
     // console.log(password);
     User.findOne({
-      email: email
+        email: email
     })
     .then( user => {
       // console.log(user);
-      // if user doesnt exist in the db throw a message indicating user not found
+      // if user doesnot exist in the db, throw a message indicating user not found
       if (!user){
-       return done(null, false, {message: "user not found"});
+        return done(null, false, {message: 'user not found'});
       }
-      // match password if user exists with decrypt and compare
+      // match password : decrypt and compare
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if(err => console.log(err));
         if(isMatch) {
           return done(null, user);
         } else {
-          return done(null, false, {message: "incorrect password"});
+          return done(null, false, {message: 'Incorrect password'});
         }
       })
     })
-    .catch( err => console.log(err));
-    }));
-  }
-
+    .catch( err =>  console.log(err));
+  }));
+}
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
