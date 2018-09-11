@@ -3,11 +3,14 @@ const router = express.Router();
 const mongoose = require('mongoose');
 // used to encrypt the password before saving to db
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 // require model
 require('../models/User')
 // create user model
 const User = mongoose.model('users');
+
+
 
 // registration route
 router.get('/register', (req, res) => {
@@ -36,7 +39,7 @@ router.post('/register', (req, res) => {
   });
 } else {
 
-  
+
   // check if email already exists in the db
 
 
@@ -72,5 +75,22 @@ bcrypt.genSalt(10, function(err, salt) {
 router.get('/login', (req, res) => {
   res.render('users/login');
 });
+
+// post route for Login
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  })(req, res, next);
+})
+
+
+// logout route
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/users/login');
+})
+
+
 
 module.exports = router;
