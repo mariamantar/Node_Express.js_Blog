@@ -2,6 +2,12 @@
 <div class="nav-wrapper">
   <a href="#" class="brand-logo center">Blog</a>
   <ul id="nav-mobile" class="left hide-on-med-and-down">
+    {{#if user}}
+    <li><a href="/users/logout">Logout</a></li>
+    {{else}}
+    <li><a href="/users/register">Sign up</a></li>
+    <li><a href="/users/login">Login</a></li>
+    {{/if}}
   </ul>
 </div>
 </nav>
