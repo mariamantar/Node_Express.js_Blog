@@ -10,8 +10,12 @@
   <body>
 
    {{>_navbar}}
+   <div class="container">
     <!-- syntax for handlebars -->
+    <!-- inclusde flash message -->
+    {{> _msg}}
     {{{body}}}
+  </div>
 
 
     <script
